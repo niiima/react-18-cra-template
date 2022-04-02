@@ -1,43 +1,41 @@
-# Getting Started with Create React App
+# Introducing React 18
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> React 18 is now available on npm!
 
-## Available Scripts
+This React App is created using of the official CRA template by default with version 18. For more information you can visit:
 
-In the project directory, you can run:
+- [Create React App](https://github.com/facebook/create-react-app).
+- [React 18 Blog](https://reactjs.org/blog/2022/03/29/react-v18.html "React v18.0 March 29, 2022 by The React Team")
+- [How to Upgrade to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html "A gradual adoption strategy for existing applications")
+## Out-of-the-box improvements
+React 18 will include out-of-the-box improvements:
 
-### `npm start`
+- [Automatic batching for fewer renders](https://github.com/reactwg/react-18/discussions/21 "Automatic batching for fewer renders in React 18")
+- [SSR support for Suspense](https://github.com/reactwg/react-18/discussions/22 "Upgrading to React 18 on the server")
+- [Fixes for Suspense behavior quirks](https://github.com/reactwg/react-18/discussions/7 "Behavioral changes to Suspense in React 18")
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Upgrade to React 18
+For client apps, upgrading to React 18 is straightforward:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Upgrade to the latest React 18 release
+Switch to the [New root API](https://github.com/reactwg/react-18/discussions/5 "Replacing render with createRoot")
 
-### `npm test`
+> Note: React 18 is a major version of React. As any major version will have, there are semantic changes that may impact your app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    // Before
+	import { render } from 'react-dom';
+	const container = document.getElementById('app');
+	render(<App tab="home" />, container);
 
-### `npm run build`
+	// After
+	import { createRoot } from 'react-dom/client';
+	const container = document.getElementById('app');
+	const root = createRoot(container);
+	root.render(<App tab="home" />);''
+	
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Troubleshooting
+If the app is significantly broken after switching to `createRoot`, see if you have `<StrictMode>` on. If you do, try removing it and see if that fixes it. If it does, a library you're using (or, less likely, you app code) is not compatible with Strict Effects.
 
 ## Learn More
 
