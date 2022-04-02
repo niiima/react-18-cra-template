@@ -20,8 +20,6 @@ For client apps, upgrading to React 18 is straightforward:
 Upgrade to the latest React 18 release
 Switch to the [New root API](https://github.com/reactwg/react-18/discussions/5 "Replacing render with createRoot")
 
-> Note: React 18 is a major version of React. As any major version will have, there are semantic changes that may impact your app
-
     // Before
 	import { render } from 'react-dom';
 	const container = document.getElementById('app');
@@ -33,7 +31,7 @@ Switch to the [New root API](https://github.com/reactwg/react-18/discussions/5 "
 	const root = createRoot(container);
 	root.render(<App tab="home" />);''
 	
-
+> Note: React 18 is a major version of React. As any major version will have, there are semantic changes that may impact your app
 ## Troubleshooting
 If the app is significantly broken after switching to `createRoot`, see if you have `<StrictMode>` on. If you do, try removing it and see if that fixes it. If it does, a library you're using (or, less likely, you app code) is not compatible with Strict Effects.
 
